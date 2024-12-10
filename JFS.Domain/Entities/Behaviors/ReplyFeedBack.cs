@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace JFS.Domain.Entities
 {
-    public class Reply : BaseEntity<Guid>
+    public class ReplyFeedBack : BaseEntity<Guid>
     {
-        public string Content { get; set; }
+        public required string ReplierId { get; set; }
         public Guid FeedBackId { get; set; }
-        public FeedBack FeedBack { get; set; }
+
+        public required string Content { get; set; }
         public bool IsHide { get; set; }
+
+        public FeedBack? FeedBack { get; set; }
+        public Employee? Replier { get; set; }
 
         public override void NewKey()
         {

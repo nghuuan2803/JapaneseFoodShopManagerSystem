@@ -11,9 +11,13 @@ namespace JFS.Domain.Entities
     {
         [Key]
         public string Id { get; set; }
-        public string Name { get; set; }
+
+        [MaxLength(30)]
+        public required string Name { get; set; } = string.Empty;
         public ActionType ActionType { get; set; }
-        public string FeatureId { get; set; } // use to group by
+
+        public required string FeatureId { get; set; } // use to group by
+
         public Feature? Feature { get; set; }
     }
     public enum ActionType

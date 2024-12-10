@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace JFS.Domain.Entities
         public required string ProductId { get; set; }
         public required Guid PromotionId { get; set; }
 
-        public required string Type { get; set; }
+        public DiscountType DiscountType { get; set; } = DiscountType.Percent;
         public double Value { get; set; }
         public int RequiredQuantity { get; set; }
         public string? GiftId { get; set; }

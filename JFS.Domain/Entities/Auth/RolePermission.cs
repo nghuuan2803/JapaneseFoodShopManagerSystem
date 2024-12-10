@@ -8,9 +8,9 @@ namespace JFS.Domain.Entities
 {
     public class RolePermission
     {
-        public string RoleId { get; set; }
-        public string PermissionId { get; set; }
-        public Role Role { get; set; }
-        public Permission Permission { get; set; }
+        public required string RoleId { get; set; }
+        public required string PermissionId { get; set; }
+        public Role? Role { get; set; }
+        public Permission? Permission { get; set; }
     }
 }

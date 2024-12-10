@@ -8,7 +8,7 @@ namespace JFS.Domain.Entities
 {
     public class ProductCombo
     {
-        public string ProductId { get; set; }
+        public required string ProductId { get; set; }
         public Guid ComboId { get; set; }
         public int Quantity { get; set; }
 

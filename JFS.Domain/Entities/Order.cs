@@ -1,32 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JFS.Domain.Entities
 {
-    public class Order : BaseEntity<int>
+    public class Order : BaseEntity<Guid>
     {
-        public required string? CustomerId { get; set; }
-        public string? Handler { get; set; }
-        public required string OrderCode { get; set; }
+        public string? CustomerId { get; set; }
+        public string? HandlerId { get; set; }
+
+        public long OrderCode { get; set; }
         public double Amount { get; set; }
         public double Final { get; set; }
+
+        [MaxLength(15)]
         public string Status { get; set; } = OrderStatus.Creating;
+
+        [MaxLength(15)]
+        public string PayMethod { get; set; } = PaymentMethod.Cash;
+
         public Guid? VoucherId { get; set; }
 
-        public Voucher? Voucher { get; set; }
+        public VoucherItem? Voucher { get; set; }
         public Customer? Customer { get; set; }
+        public Employee? Handler { get; set; }
+
+        public virtual ICollection<OrderProduct>? Products { get; set; }
+        public virtual ICollection<OrderCombo>? Combos { get; set; }
 
 
         public override void NewKey()
         {
-            OrderCode = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid();
         }
         public void SetCode()
         {
-            OrderCode = Guid.NewGuid().ToString();
+            OrderCode = DateTime.UtcNow.Ticks;
         }
     }
     public static class OrderStatus

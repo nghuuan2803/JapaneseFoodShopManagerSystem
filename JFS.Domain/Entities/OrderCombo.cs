@@ -8,11 +8,11 @@ namespace JFS.Domain.Entities
 {
     public class OrderCombo
     {
-        public int OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public Guid ComboId { get; set; }
         public int Quantity { get; set; }
 
-        public Order Order { get; set; }
-        public Combo Combo { get; set; }
+        public Order? Order { get; set; }
+        public Combo? Combo { get; set; }
     }
 }

@@ -11,7 +11,10 @@ namespace JFS.Domain.Entities
     {
         [Key]
         public string Id { get; set; }
+
+        [MaxLength(30)]
         public required string Name { get; set; } = string.Empty;
-        public virtual ICollection<Permission> Permissions { get; set; }
+
+        public virtual ICollection<Permission>? Permissions { get; set; }
     }
 }

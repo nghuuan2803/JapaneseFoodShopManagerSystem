@@ -7,29 +7,27 @@ using System.Threading.Tasks;
 
 namespace JFS.Domain.Entities
 {
-    public class Voucher
+    public class Voucher : BaseEntity<Guid>
     {
-        [Key]
-        public Guid Id { get; set; }
+        [MaxLength(100)]
+        public required string Name { get; set; } = string.Empty;
 
         public DiscountType DiscountType { get; set; } = DiscountType.Percent;
-        public string? CustomerId { get; set; }
-
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset? EndDate { get; set; }
-        public bool Applied { get; set; }
+        public int ItemCount { get; set; }
 
-        public Customer Customer { get; set; }
+        public virtual ICollection<VoucherItem>? Vouchers { get; set; }
 
-        public void NewId()
-        {
-            Id = Guid.NewGuid();
-        }
         public void SetEndDate(int days)
         {
-            if(days < 1)
+            if (days < 1)
                 days = 1;
             EndDate = StartDate.AddDays(days);
+        }
+        public override void NewKey()
+        {
+            Id = Guid.NewGuid();
         }
     }
     public enum DiscountType
